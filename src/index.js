@@ -1,3 +1,4 @@
+
 import SlimSelect from 'slim-select'
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { fetchBreeds, fetchCatByBreed } from './cat-api.js'
