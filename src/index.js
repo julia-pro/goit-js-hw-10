@@ -6,22 +6,29 @@ import { fetchBreeds, fetchCatByBreed } from './cat-api.js'
 const selectEl = document.querySelector('.breed-select');
 const infoEl = document.querySelector('.cat-info');
 const wrapperLoaderEl = document.querySelector('.wrapper-loader');
+const loaderEl = document.querySelector('.loader');
 
 function onLoad() {
   wrapperLoaderEl.classList.remove('is-hidden');
-  fetchBreeds().then(res => {
-    const markup = createOptions(res);
-    addMarkup(selectEl, markup);
-    new SlimSelect({
-  select: selectEl,
-})
-  }).catch(onError).finally(() => {
-    console.log('finally')
-    wrapperLoaderEl.classList.add('is-hidden');
-  })
+  infoEl.classList.add('is-hidden'); // Приховати div.cat-info
+  fetchBreeds()
+    .then(res => {
+      const markup = createOptions(res);
+      addMarkup(selectEl, markup);
+      new SlimSelect({
+        select: selectEl,
+      });
+    })
+    .catch(onError)
+    .finally(() => {
+      console.log('finally');
+      wrapperLoaderEl.classList.add('is-hidden');
+      infoEl.classList.remove('is-hidden'); // Показати div.cat-info після завершення запиту
+    });
 }
 
 onLoad();
+
 
 function createOptions(items = []) {
   return items
@@ -63,4 +70,9 @@ function createBoxInfo({url, name, description, temperament}) {
 
 function onError() {
   Notify.failure('Oops! Something went wrong! Try reloading the page!');
+  clearCatInfo(); 
+}
+
+function clearCatInfo() {
+  infoEl.innerHTML = ''; // Очистити вміст div.cat-info
 }
