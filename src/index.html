@@ -4,18 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Homework 10</title>
-    <link
-      href="https://unpkg.com/slim-select@latest/dist/slimselect.css"
-      rel="stylesheet"/>
-    <link rel="stylesheet" href="/src/styles.css" />
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
-    <div class="container">
-      <select class="breed-select"></select>
-      <div class="cat-info"></div>
-      <div class="wrapper-loader is-hidden"><span class="loader"></span></div>
-    </div>
-    <script src="index.js" type="module"></script>
+    <select class="breed-select"></select>
+    <p class="loading">Loading data, please wait...</p>
+    <p class="error">Oops! Something went wrong! Try reloading the page!</p>
+    <span class="loader"></span>
+    <div class="cat-info"></div>
+
+    <script src="js/index.js" type="module"></script>
   </body>
 </html>
-
